@@ -9,7 +9,8 @@ class Meal: NSObject, NSCoding {
     var name: String
     var photo: UIImage?
     var rating: Int
-
+    var des: String
+    
     //MARK: Archiving Paths
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -21,12 +22,13 @@ class Meal: NSObject, NSCoding {
         static let name = "name"
         static let photo = "photo"
         static let rating = "rating"
+        static let des = "description"
     }
     
 
 //MARK: Initialization
 
-    init?(name: String, photo: UIImage?, rating: Int) {
+    init?(name: String, photo: UIImage?, rating: Int, description: String) {
         
         // The name must not be empty
         guard !name.isEmpty else {
@@ -42,6 +44,7 @@ class Meal: NSObject, NSCoding {
         self.name = name
         self.photo = photo
         self.rating = rating
+        self.des = description
         
     }
 
@@ -50,6 +53,7 @@ class Meal: NSObject, NSCoding {
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
+        aCoder.encode(des, forKey: PropertyKey.des)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -63,11 +67,14 @@ class Meal: NSObject, NSCoding {
         
         let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
         
+        guard let des = aDecoder.decodeObject(forKey: PropertyKey.des) as? String else {
+            os_log("Unable to decode the description for a Meal object.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
         // Must call designated initializer.
-        self.init(name: name, photo: photo, rating: rating)
+        self.init(name: name, photo: photo, rating: rating, description: des)
         
     }
-    
-    
-    
+  
 }

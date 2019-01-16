@@ -10,6 +10,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
     //MARK: Actions
 
@@ -17,6 +18,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         // Hide the keyboard.
         nameTextField.resignFirstResponder()
+        descriptionTextField.resignFirstResponder()
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
@@ -55,12 +57,15 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         nameTextField.delegate = self
     
+        descriptionTextField.delegate = self
+        
         // Set up views if editing an existing Meal.
         if let meal = meal {
             navigationItem.title = meal.name
             nameTextField.text   = meal.name
             photoImageView.image = meal.photo
             ratingControl.rating = meal.rating
+            descriptionTextField.text = meal.description
         }
         
         // Enable the Save button only if the text field has a valid Meal name.
@@ -79,8 +84,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         updateSaveButtonState()
         navigationItem.title = textField.text
     
+        updateSaveButtonState()
     }
-        
+    
     //MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
@@ -121,9 +127,10 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let name = nameTextField.text ?? ""
         let photo = photoImageView.image
         let rating = ratingControl.rating
+        let description = descriptionTextField.text ?? ""
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
-        meal = Meal(name: name, photo: photo, rating: rating)
+        meal = Meal(name: name, photo: photo, rating: rating,description: description)
     }
     
 
@@ -133,5 +140,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+    
     }
+
 }
