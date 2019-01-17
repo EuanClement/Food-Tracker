@@ -12,6 +12,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var descriptionTextField: UITextField!
     
+    @IBOutlet weak var bottomSpace: NSLayoutConstraint!
     //MARK: Actions
 
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
@@ -54,6 +55,22 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [weak self] (notification) in
+            guard let strongSelf = self else { return }
+            
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
+                strongSelf.bottomSpace.constant = keyboardSize.height
+                strongSelf.view.layoutIfNeeded()
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [weak self] (notification) in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.bottomSpace.constant = 0.0
+            strongSelf.view.layoutIfNeeded()
+        }
         
         nameTextField.delegate = self
     
