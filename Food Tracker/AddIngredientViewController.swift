@@ -18,7 +18,12 @@ class AddIngredientViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        print("Save button tapped")
+        
+    }
+    
     /*
     // MARK: - Navigation
 
