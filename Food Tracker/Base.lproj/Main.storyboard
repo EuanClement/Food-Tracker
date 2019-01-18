@@ -33,7 +33,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-iE-U14">
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DRr-iE-U14">
                                                         <rect key="frame" x="7.5" y="38" width="320" height="320"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -45,7 +45,7 @@
                                                         </connections>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TVl-9P-kiZ" customClass="RatingControl" customModule="Food_Tracker" customModuleProvider="target">
-                                                        <rect key="frame" x="41.5" y="366" width="252" height="44"/>
+                                                        <rect key="frame" x="42" y="366" width="251" height="44"/>
                                                         <gestureRecognizers/>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iKt-9a-lhJ">
@@ -59,6 +59,7 @@
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="TVl-9P-kiZ" firstAttribute="leading" secondItem="aFF-LB-q50" secondAttribute="leading" constant="42" id="DWz-rn-HBJ"/>
                                                     <constraint firstItem="iKt-9a-lhJ" firstAttribute="leading" secondItem="aFF-LB-q50" secondAttribute="leading" constant="89" id="SEU-xw-q5Z"/>
                                                 </constraints>
                                             </stackView>
@@ -68,6 +69,7 @@
                                             <constraint firstAttribute="trailing" secondItem="aFF-LB-q50" secondAttribute="trailing" constant="20" id="62x-ru-NZE"/>
                                             <constraint firstItem="aFF-LB-q50" firstAttribute="leading" secondItem="VNP-UV-tTJ" secondAttribute="leading" constant="20" id="SMG-Aa-lVk"/>
                                             <constraint firstAttribute="bottom" secondItem="aFF-LB-q50" secondAttribute="bottom" constant="20" id="duw-kw-9wm"/>
+                                            <constraint firstAttribute="height" constant="488" id="q7n-69-vHf"/>
                                             <constraint firstItem="aFF-LB-q50" firstAttribute="top" secondItem="VNP-UV-tTJ" secondAttribute="top" constant="20" id="vI8-Nm-hAG"/>
                                         </constraints>
                                     </view>
@@ -150,13 +152,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwQ-fd-rV3">
-                                            <rect key="frame" x="114" y="11" width="245" height="46"/>
+                                            <rect key="frame" x="114" y="11" width="245" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Whb-q3-JJX" customClass="RatingControl" customModule="Food_Tracker" customModuleProvider="target">
-                                            <rect key="frame" x="107" y="57" width="252" height="44"/>
+                                            <rect key="frame" x="107" y="32" width="252" height="69"/>
                                             <gestureRecognizers/>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qe1-bL-E1S">
@@ -181,6 +183,7 @@
                                         <constraint firstItem="Whb-q3-JJX" firstAttribute="top" secondItem="qwQ-fd-rV3" secondAttribute="bottom" id="lyT-sR-7O7"/>
                                         <constraint firstItem="qe1-bL-E1S" firstAttribute="trailing" secondItem="Whb-q3-JJX" secondAttribute="trailing" id="rOw-uo-BhV"/>
                                         <constraint firstItem="qwQ-fd-rV3" firstAttribute="leading" secondItem="Lqw-xt-Je4" secondAttribute="trailing" constant="8" id="rm4-2L-Pec"/>
+                                        <constraint firstItem="Whb-q3-JJX" firstAttribute="leading" secondItem="Lqw-xt-Je4" secondAttribute="trailing" constant="1" id="wXz-3B-bkZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

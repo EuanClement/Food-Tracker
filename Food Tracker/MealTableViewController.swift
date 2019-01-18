@@ -61,7 +61,7 @@ class MealTableViewController: UITableViewController {
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
         cell.ratingControl.rating = meal.rating
-        cell.desLabel.text = meal.description
+        cell.desLabel.text = meal.des
         
         return cell
     }
@@ -201,3 +201,4 @@ extension MealTableViewController {
     }
 
 }
+
