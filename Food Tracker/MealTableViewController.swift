@@ -1,11 +1,3 @@
-//
-//  MealTableViewController.swift
-//  Food Tracker
-//
-//  Created by Euan Gaffney on 11/01/2019.
-//  Copyright © 2019 Apple Inc. All rights reserved.
-//
-
 import UIKit
 
 import os.log
@@ -62,6 +54,7 @@ class MealTableViewController: UITableViewController {
         cell.photoImageView.image = meal.photo
         cell.ratingControl.rating = meal.rating
         cell.desLabel.text = meal.description
+        cell.ingredientsButton.titleLabel?.text = meal.ingredients
         
         return cell
     }
@@ -162,6 +155,11 @@ class MealTableViewController: UITableViewController {
         
         }
     }
+
+
+    
+    
+
 }
 // MARK: Private Methods
 
@@ -173,14 +171,14 @@ extension MealTableViewController {
         let photo2 = UIImage(named: "meal2")
         let photo3 = UIImage(named: "meal3")
         
-        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 3, description: "Lorem ipsum dolor sit amet") else {
+        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 3, description: "Lorem ipsum dolor sit amet", ingredients: "lettuce") else {
             fatalError("Unable to instantiate meal1")
         }
         
-        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 4, description: "Lorem ipsum dolor sit amet") else {
+        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 4, description: "Lorem ipsum dolor sit amet", ingredients: "potato") else {
             fatalError("Unable to instantiate meal2")
         }
-        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 5, description: "Lorem ipsum dolor sit amet") else {
+        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 5, description: "Lorem ipsum dolor sit amet", ingredients: "spaghetti") else {
             fatalError("Unable to instantiate meal2")
         }
         meals += [meal1, meal2, meal3]
@@ -201,3 +199,4 @@ extension MealTableViewController {
     }
 
 }
+

@@ -9,12 +9,12 @@
 import UIKit
 
 class MealTableViewCell: UITableViewCell {
-
     //MARK: Properties
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var desLabel: UILabel!
+    @IBOutlet weak var ingredientsButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,4 +27,7 @@ class MealTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+class IngredientsTableViewCell: UITableViewCell {
+    
 }

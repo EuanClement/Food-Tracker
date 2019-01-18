@@ -10,11 +10,12 @@ class Meal: NSObject, NSCoding {
     var photo: UIImage?
     var rating: Int
     var des: String
-    
+    var ingredients: String
     //MARK: Archiving Paths
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
+    
     
     //MARK: Types
     
@@ -23,12 +24,13 @@ class Meal: NSObject, NSCoding {
         static let photo = "photo"
         static let rating = "rating"
         static let des = "description"
+        static let ingredients = "ingredients"
     }
     
 
 //MARK: Initialization
 
-    init?(name: String, photo: UIImage?, rating: Int, description: String) {
+    init?(name: String, photo: UIImage?, rating: Int, description: String, ingredients: String) {
         
         // The name must not be empty
         guard !name.isEmpty else {
@@ -45,7 +47,7 @@ class Meal: NSObject, NSCoding {
         self.photo = photo
         self.rating = rating
         self.des = description
-        
+        self.ingredients = ingredients
     }
 
 //MARK: NSCoding
@@ -54,6 +56,7 @@ class Meal: NSObject, NSCoding {
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
         aCoder.encode(des, forKey: PropertyKey.des)
+        aCoder.encode(ingredients, forKey: PropertyKey.ingredients)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -71,10 +74,15 @@ class Meal: NSObject, NSCoding {
             os_log("Unable to decode the description for a Meal object.", log: OSLog.default, type: .debug)
             return nil
         }
+        guard let ingredients = aDecoder.decodeObject(forKey: PropertyKey.ingredients) as? String else {
+                os_log("Unable to decode the description for a Meal object.", log: OSLog.default, type: .debug)
+                return nil
+        
+        }
         
         // Must call designated initializer.
-        self.init(name: name, photo: photo, rating: rating, description: des)
+        self.init(name: name, photo: photo, rating: rating, description: des, ingredients: ingredients)
         
-    }
   
+}
 }
